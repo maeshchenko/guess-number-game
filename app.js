@@ -36,24 +36,18 @@ guessBtn.addEventListener('click',function(e){
   //Check if won
   if (guess === winningNum){
     // Game over - won
-    //Disable input
-    guessInput.disabled = true;
-    //Change border color
-    guessInput.style.borderColor = 'green';
-    //setMessage
-    setMessage(`${winningNum} - это правильный ответ, ТЫ ПОБЕДИЛ!`,'green');
+
+    gameOver(true, `${winningNum} - это правильный ответ, ТЫ ПОБЕДИЛ!`);
+
   }else{
     //Wrong number
     guessesLeft -= 1;
     
     if (guessesLeft === 0){
       //Game over - lose
-      //Disable input
-      guessInput.disabled = true;
-      //Change border color
-      guessInput.style.borderColor = 'red';
-      //setMessage
-      setMessage(`Конец игры. Правильный ответ был ${winningNum}`,'red');
+
+      gameOver(false,`Конец игры. Правильный ответ был ${winningNum}`);
+
     }else{
       //Game continue - answer wrong
 
@@ -69,8 +63,20 @@ guessBtn.addEventListener('click',function(e){
   e.preventDefault();
 });
 
+//gameOver
+function gameOver(won, msg){
+  let color = won === true ? 'green' : 'red';
+
+  //Disable input
+  guessInput.disabled = true;
+  //Change border color
+  guessInput.style.borderColor = color;
+  //setMessage
+  setMessage(msg, color);
+};
+
 //setMessage
 function setMessage(msg, color){
   message.textContent = msg;
   message.style.color = color;
-}
+};
