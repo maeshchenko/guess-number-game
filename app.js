@@ -24,3 +24,31 @@ const game = document.querySelector('#game'),
 //Assign UI min and max
 minNum.textContent = min;
 maxNum.textContent = max;
+
+//Listen for guess
+guessBtn.addEventListener('click',function(e){
+  let guess = parseInt(guessInput.value);
+  // Validate
+  if(isNaN(guess) || guess < min || guess > max ){
+    setMessage(`Введите число между ${min} и ${max}`,'red');
+  };
+
+  //Check if won
+  if (guess === winningNum){
+    //Disable input
+    guessInput.disabled = true;
+    //Change border color
+    guessInput.style.borderColor = 'green';
+    //setMessage
+    setMessage(`${winningNum} - это правильный ответ, ТЫ ПОБЕДИЛ!`,'green');
+  }else{
+
+  };
+  e.preventDefault();
+});
+
+//setMessage
+function setMessage(msg, color){
+  message.textContent = msg;
+  message.style.color = color;
+}
