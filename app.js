@@ -35,13 +35,14 @@ game.addEventListener('mousedown',function(e){
 //Listen for guess
 guessBtn.addEventListener('click',function(e){
   let guess = parseInt(guessInput.value);
+  
   // Validate
   if(isNaN(guess) || guess < min || guess > max ){
     setMessage(`Введите число между ${min} и ${max}`,'red');
-  };
+  }
 
   //Check if won
-  if (guess === winningNum){
+  else if (guess === winningNum){
     // Game over - won
 
     gameOver(true, `${winningNum} - это правильный ответ, ТЫ ПОБЕДИЛ!`);
